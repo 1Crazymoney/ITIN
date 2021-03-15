@@ -99,7 +99,7 @@ The ITIN builds the second component for the unambiguous identification of token
 
 The ITIN is defined as a 9-digit character sequence consisting of two components
 
-ITIN := [XXXX-XXXX]-[Y]
+`ITIN := [XXXX-XXXX]-[Y]`
 
 where the components are defined in the following table.
 
