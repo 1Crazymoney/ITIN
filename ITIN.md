@@ -107,7 +107,7 @@ where the components are defined in the following table.
 
 | Sequence      | Component | Description |
 | ------------- | --------- | -----------------------|
-| `[XXXX-XXXX]` | Token ID  | The Token ID is a unique identifier that is randomly generated for each token as follows:<br/>`X` is an alphanumeric capital character <ul><li>Excluding the letters “I”, “L” and “O” as well as the numbers “0” and “1” to eliminate the risk of a potential confusion</li><li>Generated and assigned at random</li><li>ITINs containing real words like “coin” or “bits” are eliminated for maximum fairness</li></ul> <br/> Hence, 10-2=8 numeric characters and 26-3=23 alphabetic characters are available allowing for the distinct identification of 31^8 > 850 billion tokens. |
+| `[XXXX-XXXX]` | Token ID  | The Token ID is a unique identifier that is randomly generated for each token as follows:<br/>`X` is an alphanumeric capital character <ul><li>Excluding the letters “I”, “L” and “O” as well as the numbers “0” and “1” to eliminate the risk of a potential confusion</li><li>Generated and assigned at random</li><li>ITINs containing real words like “coin” or “bits” are eliminated for maximum fairness</li></ul> Hence, 10-2=8 numeric characters and 26-3=23 alphabetic characters are available allowing for the distinct identification of 31^8 > 850 billion tokens. |
 | `[Y]`         | Checksum  | `Y` is a single-digit number calculated by taking the modulo of the sum of ASCII code values for the positions 1-8 of the Token ID and a reassignment of the ASCII code to the numeric result. <br/> Recalculation of the checksum allows market participants to verify the correct communication of the identifier and, hence, the Checksum serves as a built-in security feature. |
 
 ## Fork Guidelines
@@ -150,14 +150,7 @@ The continuing blockchain system `S` is identified as this post-chain split bloc
 1. a public consensus exists about its economic and/or legal succession of the original system
 2. the fork choice rule (e.g. heaviest chain) of the unforked S leads to a higher score. This is only applied if the fork choice rule is not modified in the forked system.
 3. the fork that did not update the consensus rules is considered the continuing blockchain system.
-
-In cases where
-
-i. the fork choice rule has been modified, an effort is made to translate the semantics of the rule. If that’s not possible this criteria is omitted
-
-ii. the blockchain system that is supported by the fork choice rule does not keep its initial name, symbol and/or website, 
-
-iii. the original blockchain system’s community appears not to be correctly represented by the blockchain system identified by the fork choice rule,
+4. In cases where <br/> i. the fork choice rule has been modified, an effort is made to translate the semantics of the rule. If that’s not possible this criteria is omitted <br/> ii. the blockchain system that is supported by the fork choice rule does not keep its initial name, symbol and/or website, <br/> iii. the original blockchain system’s community appears not to be correctly represented by the blockchain system identified by the fork choice rule,
 the ITIN oversight committee will decide upon which blockchain system to use as the continuing system.
 
 The alternative blockchain system `S’` is defined as the blockchain system that is not considered the continuing system in a chain split.
