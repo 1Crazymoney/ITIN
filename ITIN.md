@@ -62,9 +62,11 @@ At any time `t`, blockchain `C(t)` is defined by a set of confirmed blocks `B={b
 
 Accounts `A={a1,a2,...}` on a blockchain system `S` are representations of entities that initiate or are involved in transactions `txi`. Note that we do not directly relate an account to a single public key or private key but allow 1-to-n and n-to-1 relationships. In fact, an account is rather defined as the units through which entities are able to interact on a blockchain system through their involvement in transactions. Thereby, these entities may be able to control multiple accounts with the same private key or an account may only be controlled through multiple private keys (possibly held by different entities). We continue assuming that any account `ai` can be unambiguously identified within `S` through its (account) address. More specifically, for any two accounts `ai` and `ak` on blockchain system `S` and with addresses `di` and `dk` it holds that if `i != k` then `di != dk`.
 
-smart contracts `SC` are computer programs stored in a blockchain system `S` where the outcome of executing the smart contract (or a specific function thereof) may lead to an update of the blockchain `C`. Such a smart contract is always created under a specific account `ai` which we refer to as the contract creating account.
+smart contracts are computer programs stored in a blockchain system `S` where the outcome of executing the smart contract (or a specific function thereof) may lead to an update of the blockchain `C`. Such a smart contract is always created under a specific account `ai` which we refer to as the contract creating account.
 
-Turning to the concept of a token, we apply the very generic ISO definition according to which a token is a “digital asset that represents a collection of entitlements” [1]. For the purpose of this document this definition shall include cryptocurrencies, colored coins, utility tokens, security tokens and more generally all kinds of fungible, non-fungible, and hybrid tokens. A new token may be created with and defined by a smart contract but this does not necessarily have to be the case. However, a new token is always created from a specific account `ai` which we denote the token creating account and the respective account address the token address `di`. In general, a token creating account and a specific token are related by a 1-to-many relationship indicating that multiple tokens may be created under a single token creating account. As a result, tokens do not have unique token addresses. We shall thus assume that at its creation a token symbol `mi` is assigned to the token that is unique for all tokens created under a specific token creating account. Hence, a token may be identified by the combination of its token address and token symbol or the tuple `(di, mi)`, respectively.
+Turning to the concept of a token, we apply the very generic ISO definition according to which a token is a “digital asset that represents a collection of entitlements” [1]. For the purpose of this document this definition shall include cryptocurrencies, colored coins, utility tokens, security tokens and more generally all kinds of fungible, non-fungible, and hybrid tokens. We distinguish three types of tokens: native tokens (1), fungible tokens (2), and non-fungible tokens (3). Native tokens, as the name suggests, are native to the blockchain system they are defined in and provide a core function to the system without which the system would not function. As a result, native tokens are defined at and exist since the launch of blockchain system or, in other words, with the system's genesis block `b0`. On the other hand, both fungible and non-fungible tokens are deployed on the blockchain system at a later point in time or with a block `bi, i>0`, respectively.
+
+A non-native token is always created from a specific account `ai` which we denote the token creating account and the respective account address the token address `di`. The token creating account can be, but does not necessarily have to be, a smart contract in which case this smart contract is referred to as the token contract. In general, a token creating account and a token are related by a 1-to-many relationship indicating that multiple tokens may be created under a single token creating account. As a result, tokens do not have unique token addresses. We shall thus assume that at its creation a token symbol `mi` is assigned to the token that is unique for all tokens created under a specific token creating account. Hence, a token may be identified by the combination of its token address and token symbol or the tuple `(di, mi)`, respectively.
 
 Furthermore, a token may be divided into a number of interchangeable units such that we call the token a fungible token. Or, a token may represent a collection of individual digital assets each with its distinct characteristics and entitlements in which case the token is called a non-fungible token. In order to identify individual assets in a non-fungible token those are associated with a sub-identifier `ui`, the token sub-address, such that the combination of token address, symbol and sub-address or the triple `(di, mi, ui)`, respectively, serves as identifier.
 
@@ -80,16 +82,16 @@ We have seen in the previous section that the unambiguous identification of a to
 
 Consider a blockchain system S that defines an arbitrary number of tokens each with token address di, token symbol mi, and for non-fungible tokens sub-address ui. Assume that the system S may fork and split at any time. Furthermore, we assume that a split S’ of that blockchain system can be created by anyone and anytime such that we may not be aware of all chain splits at a certain time t.
 
-We are interested in locating a token on that blockchain system and across all observed and unobserved splitted systems S’. We therefore define a multi-data point identification scheme based on the data-points in the following table.
+We are interested in locating a token on that blockchain system and across all observed and unobserved splitted systems S’. We therefore define a multi-data point identification scheme outlined in the following table. More specifically, the table defines the data points required for the unambiguous identification of the token types native, fungible and non-fungible. As can be seen in the table not all token types require the same data points for identification such that the structure of the UTL differs.
 
-| Identification Point | Abbr. | Mode     | Description |
-|----------------------|-------|------    |-------------|
-| Genesis Block Hash   | GBH   | Required | The hash of the genesis block `b0` of blockchain `C` in blockchain system `S` |
-| Post Fork Block Hash | FBH   | Required | The hash of the block `bi` of blockchain `C` in blockchain system `S` following immediately after an observed fork. If no fork has been observed so far the GBH is used. |
-| Recent Block Hash    | RBH   | Required | The hash of a recent block `bj` of blockchain `C` in blockchain system `S`. With each update of the FBH the RBH is also updated. |
-| Token Address        | TAD   | Required | The token address `di` of the token to be located. For the location of a native token the `0x000…` address is used. |
-| Token Symbol         | TSY   | Optional | The token symbol `mi` of the token to be located. For the location of a native token this field may also be blank. |
-| Token Sub-address    | TSA   | Optional | The token sub-address `ui` of the individual digital asset under a non-fungible token contract to be located. For the location of fungible tokens this field is left blank. |
+| Identification Point | Abbr. | Description | Native | Fungible | Non-Fungible |
+|----------------------|-------|------------ |------- | -------- | -------------|
+| Genesis Block Hash   | GBH   | The hash of the genesis block `b0` of blockchain `C` in blockchain system `S` | Required | Required | Required |
+| Post Fork Block Hash | FBH   | The hash of the block `bi` of blockchain `C` in blockchain system `S` following immediately after an observed fork. If no fork has been observed so far the GBH is used. | Required | Required | Required |
+| Recent Block Hash    | RBH   | The hash of a recent block `bj` of blockchain `C` in blockchain system `S`. With each update of the FBH the RBH is also updated. | Required | Required | Required |
+| Token Address        | TAD   | The token address `di` of the token to be located. | NA | Required | Required |
+| Token Symbol         | TSY   | The token symbol `mi` of the token to be located. For the location of a native token this field may also be blank. | NA | Required | Required |
+| Token Sub-address    | TSA   | The token sub-address `ui` of the individual digital asset under a non-fungible token contract to be located. For the location of fungible tokens this field is left blank. | NA | NA | Required |
 
 Note that the recent block `b(t)` changes dynamically with time `t` such that at time `T, T>t, b(T) != b(t)`. Hence, the respective token identifier may be “accurate” at time `t` but outdated at time `T`. With block times being a small number of seconds this potentially requires a frequent updating of the RBH and, thus, the UTL.
 
@@ -103,28 +105,14 @@ The ITIN is defined as a 9-digit character sequence consisting of two components
 
 where the components are defined in the following table.
 
-Sequence
-Component
-Description
-[XXXX-XXXX]
-Token ID
-The Token ID is a unique identifier that is randomly generated for each token as follows:
-
-X is an alphanumeric capital character
-Excluding the letters “I”, “L” and “O” as well as the numbers “0” and “1” to eliminate the risk of a potential confusion
-Generated and assigned at random
-ITINs containing real words like “coin” or “bits” are eliminated for maximum fairness
-
-Hence, 10-2=8 numeric characters and 26-3=23 alphabetic characters are available allowing for the distinct identification of 31^8 > 850 billion tokens.
-[Y]
-Checksum
-Y is a single-digit number calculated by taking the modulo of the sum of ASCII code values for the positions 1-8 of the Token ID and a reassignment of the ASCII code to the numeric result.
-
-Recalculation of the checksum allows market participants to verify the correct communication of the identifier and, hence, the Checksum serves as a built-in security feature.
+| Sequence      | Component | Description |
+| ------------- | --------- | -----------------------|
+| `[XXXX-XXXX]` | Token ID  | The Token ID is a unique identifier that is randomly generated for each token as follows:<br/>`X` is an alphanumeric capital character <ul><li>Excluding the letters “I”, “L” and “O” as well as the numbers “0” and “1” to eliminate the risk of a potential confusion</li><li>Generated and assigned at random</li><li>ITINs containing real words like “coin” or “bits” are eliminated for maximum fairness</li></ul> <br/> Hence, 10-2=8 numeric characters and 26-3=23 alphabetic characters are available allowing for the distinct identification of 31^8 > 850 billion tokens. |
+| `[Y]`         | Checksum  | `Y` is a single-digit number calculated by taking the modulo of the sum of ASCII code values for the positions 1-8 of the Token ID and a reassignment of the ASCII code to the numeric result. <br/> Recalculation of the checksum allows market participants to verify the correct communication of the identifier and, hence, the Checksum serves as a built-in security feature. |
 
 ## Fork Guidelines
 
-As discussed previously, blockchains regularly fork, sometimes causing chain splits and two individual blockchain systems S and S’ such that C(s)=C’(s) for times s<t where t is the time of the chain split. As a result, post-fork the identifier for a token on that blockchain system needs to be updated. For this update clear governance rules have to be defined. Specifically, (1) what is updated, (2) how is it updated, and (3) by whom is it updated. 
+As discussed previously, blockchains regularly fork, sometimes causing chain splits and two individual blockchain systems `S` and `S’` such that `C(s)=C’(s)` for times `s<t` where `t` is the time of the chain split. As a result, post-fork the identifier for a token on that blockchain system needs to be updated. For this update clear governance rules have to be defined. Specifically, (1) what is updated, (2) how is it updated, and (3) by whom is it updated.
 
 In this section we outline the governance framework for updating the token locator UTL and identifier ITIN upon an observed blockchain fork.
 
@@ -134,21 +122,21 @@ In this section we outline the governance framework for updating the token locat
 
 The Post-Fork Block Hash is updated upon every fork that leads to a sustainable chain split.
 
-A sustainable chain split is a chain split that leads to two parallel chains continuing for at least M blocks.
+A sustainable chain split is a chain split that leads to two parallel chains continuing for at least `M` blocks.
 
-The ITSA oversight committee reviews and updates if necessary from time to time and possibly for different blockchain systems individually the number of blocks M.
+The ITSA oversight committee reviews and updates if necessary from time to time and possibly for different blockchain systems individually the number of blocks `M`.
 
 #### Rules for Recent Block Hash
 
-The Recent Block Hash is updated every N blocks.
+The Recent Block Hash is updated every `N` blocks.
 
-The ITSA oversight committee reviews and updates if necessary from time to time and possibly for different blockchain systems individually the number of blocks N.
+The ITSA oversight committee reviews and updates if necessary from time to time and possibly for different blockchain systems individually the number of blocks `N`.
 
-Note, the updating rules for the Recent Block Hash imply that between any two updates of the RBH at most N undetected forks duplicating a token may have occurred. In other words, the likelihood that the UTL is pointing to the token it should identify is bounded by p=1/N. As an example, if N=100 then there exist 100 potential events that an undetected fork has occurred or a likelihood of 1% for no such fork. This may help define an appropriate value for N given the accepted level of uncertainty attached to the UTL for a blockchain system.
+Note, the updating rules for the Recent Block Hash imply that between any two updates of the RBH at most `N` undetected forks duplicating a token may have occurred. As an example, if `N=100` then there exist 100 potential events that an undetected fork has occurred. This may help define an appropriate value for `N` given the accepted level of uncertainty attached to the UTL for a blockchain system.
 
 ### ITIN Assignment Rules
 
-Other than the UTL, the ITIN is a static identifier for a specific token. As such, the ITIN for a token does not change over time and, in particular, upon blockchain forks and subsequent chain splits. However, a chain split effectively creates two parallel blockchain systems S and S’ which share the same history in terms of blockchains C and C’ and, thus, duplicate all tokens in existence previous to the chain split. Hence, the ITIN Assignment Rules essentially govern how existing ITINs are associated with, and new ITINs are created for, the original and duplicate tokens.
+Other than the UTL, the ITIN is a static identifier for a specific token. As such, the ITIN for a token does not change over time and, in particular, upon blockchain forks and subsequent chain splits. However, a chain split effectively creates two parallel blockchain systems `S` and `S’` which share the same history in terms of blockchains `C` and `C’` and, thus, duplicate all tokens in existence previous to the chain split. Hence, the ITIN Assignment Rules essentially govern how existing ITINs are associated with, and new ITINs are created for, the original and duplicate tokens.
 
 #### Relevant Chain Splits
 
@@ -156,38 +144,38 @@ The ITIN Assignment Rules apply upon a new sustainable chain split.
 
 #### Identification of the Continuing Blockchain System
 
-In a chain split the continuing blockchain system S is defined as the blockchain system that economically and/or legally represents the continuation of the original, pre-chain split, system.
+In a chain split the continuing blockchain system `S` is defined as the blockchain system that economically and/or legally represents the continuation of the original, pre-chain split, system.
 
-The continuing blockchain system S is identified as this post-chain split blockchain system for which:
-a public consensus exists about its economic and/or legal succession of the original system
-the fork choice rule (e.g. heaviest chain) of the unforked S leads to a higher score. This is only applied if the fork choice rule is not modified in the forked system.
-the fork that did not update the consensus rules is considered the continuing blockchain system.
+The continuing blockchain system `S` is identified as this post-chain split blockchain system for which:
+1. a public consensus exists about its economic and/or legal succession of the original system
+2. the fork choice rule (e.g. heaviest chain) of the unforked S leads to a higher score. This is only applied if the fork choice rule is not modified in the forked system.
+3. the fork that did not update the consensus rules is considered the continuing blockchain system.
+
 In cases where
-(i) the fork choice rule has been modified, an effort is made to translate the semantics of the rule. If that’s not possible this criteria is omitted
-(ii) the blockchain system that is supported by the fork choice rule does not keep its initial name, symbol and/or website, 
-(iii) the original blockchain system’s community appears not to be correctly represented by the blockchain system identified by the fork choice rule,
+
+i. the fork choice rule has been modified, an effort is made to translate the semantics of the rule. If that’s not possible this criteria is omitted
+
+ii. the blockchain system that is supported by the fork choice rule does not keep its initial name, symbol and/or website, 
+
+iii. the original blockchain system’s community appears not to be correctly represented by the blockchain system identified by the fork choice rule,
 the ITIN oversight committee will decide upon which blockchain system to use as the continuing system.
 
-The alternative blockchain system S’ is defined as the blockchain system that is not considered the continuing system in a chain split.
+The alternative blockchain system `S’` is defined as the blockchain system that is not considered the continuing system in a chain split.
 
 Note, in general sustainable chain splits follow extensive public discussions among the community and/or key stakeholders along the course of which a consensus is established of which is to be considered the continuing and the alternative blockchain system. As such the identification of the continuing blockchain system is unproblematic according to the decision rule (1).
 
 #### Association of Existing ITINs
 
-The association of existing ITINs with the token defined by either the continuing (S) or alternative (S’) blockchain system is governed by the following decision tree:
+The association of existing ITINs with the token defined by either the continuing (`S`) or alternative (`S’`) blockchain system is governed by the following decision tree:
 
 If a token issuer exists and if this issuer, or an authorized representative, has filed a valid request for Association of ITIN Upon Blockchain Split then this request will define the association of ITIN with the token.
 Otherwise, the existing ITIN remains associated with the tokens defined by the continuing blockchain system S.
 
 #### Creation of New ITINs
 
-The native token defined by the alternative blockchain system S’ receives a new ITIN.
+The native token defined by the alternative blockchain system `S’` always receives a new ITIN.
 
-A new ITIN is assigned to non-native tokens defined by the alternative blockchain system S’ only upon request.
-
-## Limitations
-
-to be added?
+A new ITIN is assigned to non-native tokens defined by the alternative blockchain system `S’` only upon request.
 
 ## References
 
