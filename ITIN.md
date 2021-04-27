@@ -146,23 +146,20 @@ The ITIN Assignment Rules apply upon a new sustainable chain split.
 
 In a chain split the continuing blockchain system `S` is defined as the blockchain system that economically and/or legally represents the continuation of the original, pre-chain split, system.
 
-The continuing blockchain system `S` is identified as this post-chain split blockchain system for which:
-1. a public consensus exists about its economic and/or legal succession of the original system
-2. the fork choice rule (e.g. heaviest chain) of the unforked S leads to a higher score. This is only applied if the fork choice rule is not modified in the forked system.
-3. the fork that did not update the consensus rules is considered the continuing blockchain system.
-4. In cases where <br/> i. the fork choice rule has been modified, an effort is made to translate the semantics of the rule. If that’s not possible this criteria is omitted <br/> ii. the blockchain system that is supported by the fork choice rule does not keep its initial name, symbol and/or website, <br/> iii. the original blockchain system’s community appears not to be correctly represented by the blockchain system identified by the fork choice rule,
-the ITIN oversight committee will decide upon which blockchain system to use as the continuing system.
+ITIN Governance will identify the continuing blockchain system `S` upon a chain split based on a number of criteria including (but not limited to):
+
+- Does a public consensus exist about the economic and/or legal succession of the original system?
+- Which system receives a higher score according to the fork choice rule (e.g. heaviest chain)?
+- Which system did not update the consensus rules?
 
 The alternative blockchain system `S’` is defined as the blockchain system that is not considered the continuing system in a chain split.
-
-Note, in general sustainable chain splits follow extensive public discussions among the community and/or key stakeholders along the course of which a consensus is established of which is to be considered the continuing and the alternative blockchain system. As such the identification of the continuing blockchain system is unproblematic according to the decision rule (1).
 
 #### Association of Existing ITINs
 
 The association of existing ITINs with the token defined by either the continuing (`S`) or alternative (`S’`) blockchain system is governed by the following decision tree:
 
-If a token issuer exists and if this issuer, or an authorized representative, has filed a valid request for Association of ITIN Upon Blockchain Split then this request will define the association of ITIN with the token.
-Otherwise, the existing ITIN remains associated with the tokens defined by the continuing blockchain system S.
+- If a token issuer exists and if this issuer, or an authorized representative, has filed a valid request for association of an ITIN with ITIN Governance then this request will govern the association of the ITIN with the token on `S` or `S'`.
+- Otherwise, the existing ITIN remains associated with the token defined by the continuing blockchain system `S`.
 
 #### Creation of New ITINs
 
