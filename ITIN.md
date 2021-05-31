@@ -4,7 +4,7 @@
 
 | Version | Release Date | Comments                         |
 |---------|--------------|----------------------------------|
-| 1.0     | TBD          | Initial release                  |
+| 1.0     | 2021-05-31   | Initial release                  |
 
 ## Authors
 
