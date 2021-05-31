@@ -11,8 +11,10 @@ Documentation
 
 The ITIN Specification can be found here: [ITIN Specification](https://github.com/itsaglobal/itin/blob/main/ITIN.md).
 
-Building actus-core
+Development process
 -------------
+
+The ITIN is developed by ITSA's [PWG1 working group](https://my.itsa.global/working-group-itin). The working group consists of representatives of ITSA member organizations and meets on a regular basis. Please reach out if you want to join the working group.
 
 Questions and feedback
 ----------------------
