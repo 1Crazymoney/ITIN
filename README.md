@@ -2,12 +2,37 @@
 
 ![ITSA Logo](https://itsa.global/wpcontent425/wp-content/uploads/2019/10/itsa_logo2.png)
 
-ITSA aims at promoting the development and implementation of comprehensive market standards for blockchain- and DLT-based cryptographic tokens. To increase transparency and safety on global token markets, ITSA e.V. assigns a unique and fork-resilient identifier (ITIN) to each token, classifies the token according to our International Token Classification Framework (ITC), and adds the classified token to the world’s largest register for token data (Tokenbase).
+ITSA aims at promoting the development and implementation of comprehensive market standards for blockchain- and DLT-based cryptographic tokens. To increase transparency and safety on global token markets, ITSA e.V. has developed and implemented the International Token Identification Number (ITIN), a unique and fork-resilient token identifier, the International Token Classification Framework (ITC), a comprehensive classification framework for tokens, and maintains the TOKENBASE, the world’s largest register for token data.
 
-Unique identifiers for commodities, products, or assets, have been used on international markets for a long time. For example, currencies are identified through internationally recognized ISO currency codes (e.g. EUR for Euro), and financial securities and instruments are identified by means of the International Securities Identification Number (ISIN) or the Financial Instrument Global Identifier (FIGI) . The need for a new approach on the identification of tokens arises from the fact that these digital representations of the referenced asset are defined by software on a DL-Protocol that serves as shared infrastructure. This software, let’s refer to it as the token contract, then not only captures details of the token such as the current holdings by participants but also offers logic e.g. to transfer tokens from one participant to another. This is fundamentally different from traditional market infrastructure where securities are administered by central agents which record current holdings as well as transfers in their proprietary systems.
+This repository serves as the official database for the development and publishing of the ITIN. 
 
-The implications for appropriate identification are obvious: In the latter case, a unique identification code or name, respectively, is sufficient in order to administer and update securities holdings by participants through the central agents in their proprietary systems. On the other hand, for software-defined tokens it is of utmost importance to unambiguously locate the respective token address across DL-Protocol in order for the participants to make sure that a token considered for sale or purchase indeed references the intended asset. This is similar to the problem of locating resources, like a website, in the world wide web (WWW) for which the Uniform Resource Locator (URL) has been created.
+Documentation
+-------------
 
-Hence, ITSA has developed the ITIN as a unique identifier that is conceptually similar to the URL and serves as an unambiguous means of locating cryptographic tokens across DL protocols and in a fork-resilient manner. Thereby, the ITIN can be used for identification of all DL-based cryptographic tokens, regardless of their economic features such as status as security, their fungibility or tradability.
+The ITIN Specification can be found here: [ITIN Specification](https://github.com/itsaglobal/itin/blob/main/ITIN.md).
 
-Official database by [ITSA](https://itsa.global) of the International Token Identification Number (ITIN) standards.
+Building actus-core
+-------------
+
+Questions and feedback
+----------------------
+
+Consult our [homepage](https://itsa.global) for general information. 
+
+Questions should be directed to info@itsa.global.
+
+Issues can be reported on GitHub
+https://github.com/itsaglobal/itin/issues.
+
+Contributing
+------------
+
+Great that you are considering to contribute. ITSA is a non-profit organization dedicated to the Open-Source spirit of blockchain and token markets. We want to invite everyone everyone to join us in our quest to safe and efficient token markets.
+
+There are various ways for you and/or your company to contribute:
+
+- [Become a member of ITSA](https://my.itsa.global/application)
+- [Join a working group](https://my.itsa.global/working-group-itin)
+- Submit a PR with your bug fix, improvement, etc.
+
+Please contact us if you have any question or proposal regarding how you can get involved.
